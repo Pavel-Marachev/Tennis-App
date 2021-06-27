@@ -16,8 +16,8 @@ class StartGame extends StatefulWidget{
 
 class StartGameState extends State {
   final dbHelper = DatabaseHelper.instance;
-  List department = [];
-  List name = [];
+  List<Map<String, dynamic>> department = [];
+  List<Map<String, dynamic>> name = [];
   String chosenName, chosenDepartment;
 
   final controller = PageController(
@@ -25,29 +25,27 @@ class StartGameState extends State {
   );
 
   Future<List> _queryDepartment() async {
-    List allRows = await dbHelper.queryDepartment();
+    List<Map<String, dynamic>> allRows = await dbHelper.queryDepartment();
     return allRows.toList();
   }
 
   Future<List> _queryName() async {
-    List allRows = await dbHelper.queryName();
+    List<Map<String, dynamic>> allRows = await dbHelper.queryName();
     return allRows.toList();
   }
 
   List<DropdownMenuItem> myDropdownMenuItemDepartment(){
     List<DropdownMenuItem> myItemList = [];
-    _queryDepartment().then((value) => {if(this.mounted){setState(()=>{this.department = value})}});
       for (int i = 0; i < department.length; i++){
-        myItemList.add(DropdownMenuItem(child: Text(jsonDecode(jsonEncode(department[i]))[''], overflow: TextOverflow.ellipsis,), value: jsonDecode(jsonEncode(department[i]))['']));
+        myItemList.add(DropdownMenuItem(child: Text(jsonDecode(jsonEncode(department[i]))['department'], overflow: TextOverflow.ellipsis,), value: jsonDecode(jsonEncode(department[i]))['department']));
       }
       return myItemList;
   }
 
   List<DropdownMenuItem> myDropdownMenuItemName(){
     List<DropdownMenuItem> myItemList = [];
-    _queryName().then((value) => {if(this.mounted){setState(()=>{this.name = value})}});
     for (int i = 0; i < name.length; i++){
-      myItemList.add(DropdownMenuItem(child: Text(jsonDecode(jsonEncode(name[i]))[''], overflow: TextOverflow.ellipsis,), value: jsonDecode(jsonEncode(name[i]))['']));
+      myItemList.add(DropdownMenuItem(child: Text(jsonDecode(jsonEncode(name[i]))['name'], overflow: TextOverflow.ellipsis,), value: jsonDecode(jsonEncode(name[i]))['name']));
     }
     return myItemList;
   }
@@ -118,6 +116,9 @@ class StartGameState extends State {
 
   @override
   Widget build(BuildContext context) {
+    _queryDepartment().then((value) => {if(this.mounted){setState(()=>{this.department = value})}});
+    _queryName().then((value) => {if(this.mounted){setState(()=>{this.name = value})}});
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(

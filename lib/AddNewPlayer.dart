@@ -10,7 +10,6 @@ class FormOfScreen extends StatefulWidget{
 class FormOfScreenState extends State{
   final dbHelper = DatabaseHelper.instance;
   final _formKey = GlobalKey<FormState>();
-  FocusNode _focusNode;
   
   String name, department;
 

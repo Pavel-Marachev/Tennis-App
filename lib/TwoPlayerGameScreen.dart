@@ -64,6 +64,7 @@ class TwoPlayerGameScreenState extends State{
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: FloatingActionButton(
+                          heroTag: "btn1",
                           onPressed: (){
                             setState(() {
                               firstScore++;
@@ -108,6 +109,7 @@ class TwoPlayerGameScreenState extends State{
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: FloatingActionButton(
+                          heroTag: "btn2",
                           onPressed: (){
                             setState(() {
                               secondScore++;

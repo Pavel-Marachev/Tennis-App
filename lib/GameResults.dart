@@ -11,10 +11,10 @@ class GameResults extends StatefulWidget{
 class _GameResultsState extends State<GameResults> {
   final dbHelper = DatabaseHelper.instance;
 
-  List results = [];
+  List<Map<String, dynamic>> results = [];
 
   Future<List> _queryResult() async {
-    List allRows = await dbHelper.queryAllRowsResults();
+    List<Map<String, dynamic>> allRows = await dbHelper.queryAllRowsResults();
     return allRows.toList();
   }
 

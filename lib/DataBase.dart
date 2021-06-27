@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
 
-  static final _databaseName = "MyDatabase4.db";
+  static final _databaseName = "MyDatabase.db";
   static final _databaseVersion = 1;
 
   static final table = 'my_table';
@@ -77,12 +77,12 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> queryName() async {
     Database db = await instance.database;
-    return await db.rawQuery("SELECT DISTINCT $columnName AS '' FROM $table");
+    return await db.rawQuery("SELECT DISTINCT $columnName AS name FROM $table");
   }
 
   Future<List<Map<String, dynamic>>> queryDepartment() async {
     Database db = await instance.database;
-    return await db.rawQuery("SELECT DISTINCT $columnDepartment AS '' FROM $table");
+    return await db.rawQuery("SELECT DISTINCT $columnDepartment AS department FROM $table");
   }
 
   //Methods for second table(results)
