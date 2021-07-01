@@ -12,6 +12,7 @@ class FourPlayerGameScreen extends StatefulWidget{
 
 class FourPlayerGameScreenState extends State{
   final dbHelper = DatabaseHelper.instance;
+  String _currentAddress;
 
   Color firstIndicatorColor = Color(0xFF312E2E),
       secondIndicatorColor = Colors.grey[50],
@@ -25,7 +26,8 @@ class FourPlayerGameScreenState extends State{
       DatabaseHelper.columnFirstScore: firstScore,
       DatabaseHelper.columnSecondScore: secondScore,
       DatabaseHelper.columnThirdDepartmentName: thirdPlayer,
-      DatabaseHelper.columnFourthDepartmentName: fourthPlayer
+      DatabaseHelper.columnFourthDepartmentName: fourthPlayer,
+      DatabaseHelper.columnAddress: _currentAddress
     };
     final id = await dbHelper.insertResults(row);
     print('inserted row id: $id');
@@ -46,6 +48,8 @@ class FourPlayerGameScreenState extends State{
 
   @override
   Widget build(BuildContext context) {
+    globals.getUserLocation().then((value) => {if(this.mounted){setState(()=>{_currentAddress = value})}});
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,

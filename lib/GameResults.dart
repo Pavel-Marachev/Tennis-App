@@ -42,6 +42,8 @@ class _GameResultsState extends State<GameResults> {
                             Center(child: Column(
                               children: [
                                 Text("${document['data']}", style: TextStyle(color: Colors.grey),),
+                                SizedBox(height: 5),
+                                Text("${document['address']}", style: TextStyle(color: Colors.grey),),
                                 SizedBox(height: 10),
                                 Text("${document['firstScore']}  :  ${document['secondScore']}", style: TextStyle(fontSize: 17)),
                                 SizedBox(height: 5)
@@ -75,7 +77,7 @@ class _GameResultsState extends State<GameResults> {
                               ],
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             )
-                          ])
+                          ]),
                         ],
                       ),
                     ),

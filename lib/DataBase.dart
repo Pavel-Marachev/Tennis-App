@@ -24,6 +24,7 @@ class DatabaseHelper {
   static final columnFirstScore = 'firstScore';
   static final columnSecondScore = 'secondScore';
   static final columnData = 'data';
+  static final columnAddress = 'address';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -60,7 +61,8 @@ class DatabaseHelper {
             $columnFourthDepartmentName TEXT,
             $columnFirstScore INTEGER NOT NULL,
             $columnSecondScore INTEGER NOT NULL,
-            $columnData  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            $columnData TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            $columnAddress TEXT
           )
     ''');
   }

@@ -4,6 +4,7 @@ import 'GlobalVariables.dart' as globals;
 import 'DataBase.dart';
 
 int firstScore = 0, secondScore = 0;
+String _currentAddress;
 
 class TwoPlayerGameScreen extends StatefulWidget{
   @override
@@ -22,6 +23,7 @@ class TwoPlayerGameScreenState extends State{
       DatabaseHelper.columnSecondDepartmentName: secondPlayer,
       DatabaseHelper.columnFirstScore: firstScore,
       DatabaseHelper.columnSecondScore: secondScore,
+      DatabaseHelper.columnAddress: _currentAddress
     };
     final id = await dbHelper.insertResults(row);
     print('inserted row id: $id');
@@ -38,6 +40,8 @@ class TwoPlayerGameScreenState extends State{
 
   @override
   Widget build(BuildContext context) {
+    globals.getUserLocation().then((value) => {if(this.mounted){setState(()=>{_currentAddress = value})}});
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black87,
